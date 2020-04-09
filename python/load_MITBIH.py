@@ -460,7 +460,7 @@ def load_signal(DS, winL, winR, do_preprocess):
 
     size_RR_max = 20
 
-    pathDB = '/home/mondejar/dataset/ECG/'
+    pathDB = 'dataset/'
     DB_name = 'mitdb'
     fs = 360
     jump_lines = 1

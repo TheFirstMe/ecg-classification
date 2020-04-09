@@ -81,10 +81,10 @@ def main():
 
     oversamp = '' #'', 'SMOTEENN/', 'SMOTE/', 'SMOTETomek/', 'ADASYN/'
     # Load gt labelso
-    eval_labels = np.loadtxt('/home/mondejar/Dropbox/ECG/code/ecg_classification/python/mit_db/' + DS + '_labels.csv') 
+    eval_labels = np.loadtxt('Dropbox/ECG/code/ecg_classification/python/mit_db/' + DS + '_labels.csv') 
 
     # Configuration
-    results_path = '/home/mondejar/Dropbox/ECG/code/ecg_classification/python/results/ovo/MLII/'
+    results_path = 'Dropbox/ECG/code/ecg_classification/python/results/ovo/MLII/'
 
     if DS == 'DS2':     
         model_RR            = results_path + oversamp + 'rm_bsln/' + 'maxRR/' + 'RR/' + 'norm_RR/'   + 'weighted/' + 'C_0.001' + '_decision_ovo.csv'

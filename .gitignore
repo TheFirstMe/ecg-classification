@@ -8,3 +8,8 @@ python/results/*
 python/results*
 
 python/mit_db/*
+
+python/dataset/*
+!python/dataset/mitdb
+python/dataset/mitdb/*
+!python/dataset/mitdb/csv

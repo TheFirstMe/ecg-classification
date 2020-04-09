@@ -136,7 +136,7 @@ def main():
   window_size = 160
   compute_RR_interval_feature = True
   compute_wavelets = True
-  dataset = '/home/mondejar/dataset/ECG/mitdb/'
+  dataset = 'dataset/mitdb/'
   output_path = dataset + 'm_learning/'
 
   binary_problem = False

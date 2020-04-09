@@ -158,8 +158,19 @@ def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_clas
     maxRR=True, use_RR=True, norm_RR=True, compute_morph={''}, oversamp_method = '', pca_k = '', feature_selection = '', do_cross_val = '', C_value = 0.001, gamma_value = 0.0, reduced_DS = False, leads_flag = [1,0]):
     print("Runing train_SVM.py!")
 
-    db_path = '/home/mondejar/dataset/ECG/mitdb/m_learning/scikit/'
-    
+    db_path = 'dataset/mitdb/m_learning/scikit/'
+    try:
+      os.makedirs(db_path)
+    except:
+      pass
+    try:
+      os.makedirs(db_path + 'features/')
+    except:
+      pass
+    try:
+      os.makedirs(db_path + 'svm_models/')
+    except:
+      pass
     # Load train data 
     [tr_features, tr_labels, tr_patient_num_beats] = load_mit_db('DS1', winL, winR, do_preprocess,
         maxRR, use_RR, norm_RR, compute_morph, db_path, reduced_DS, leads_flag)
@@ -245,7 +256,7 @@ def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_clas
         start = time.time()
 
         # TODO Save data over the k-folds and ranked by the best average values in separated files   
-        perf_measures_path = create_svm_model_name('/home/mondejar/Dropbox/ECG/code/ecg_classification/python/results/' + multi_mode, winL, winR, do_preprocess, 
+        perf_measures_path = create_svm_model_name('Dropbox/ECG/code/ecg_classification/python/results/' + multi_mode, winL, winR, do_preprocess, 
         maxRR, use_RR, norm_RR, compute_morph, use_weight_class, feature_selection, oversamp_method, leads_flag, reduced_DS,  pca_k, '/')
 
         # TODO implement this method! check to avoid NaN scores....
@@ -262,7 +273,7 @@ def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_clas
             for k in k_folds:
                 ijk_scores, c_values = run_cross_val(tr_features_scaled, tr_labels, tr_patient_num_beats, do_cross_val, k)
                 # TODO Save data over the k-folds and ranked by the best average values in separated files   
-                perf_measures_path = create_svm_model_name('/home/mondejar/Dropbox/ECG/code/ecg_classification/python/results/' + multi_mode, winL, winR, do_preprocess, 
+                perf_measures_path = create_svm_model_name('Dropbox/ECG/code/ecg_classification/python/results/' + multi_mode, winL, winR, do_preprocess, 
                 maxRR, use_RR, norm_RR, compute_morph, use_weight_class, feature_selection, oversamp_method, leads_flag, reduced_DS,  pca_k, '/')
 
                 if not os.path.exists(perf_measures_path):
@@ -338,7 +349,7 @@ def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_clas
         ############################################################################################################
 
         # Evaluate the model on the training data
-        perf_measures_path = create_svm_model_name('/home/mondejar/Dropbox/ECG/code/ecg_classification/python/results/' + multi_mode, winL, winR, do_preprocess, 
+        perf_measures_path = create_svm_model_name('Dropbox/ECG/code/ecg_classification/python/results/' + multi_mode, winL, winR, do_preprocess, 
             maxRR, use_RR, norm_RR, compute_morph, use_weight_class, feature_selection, oversamp_method, leads_flag, reduced_DS, pca_k, '/')
 
         # ovo_voting:

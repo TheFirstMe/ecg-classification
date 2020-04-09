@@ -44,7 +44,7 @@ patients = []
 
 size_RR_max = 20
 
-pathDB = '/home/mondejar/dataset/ECG/'
+pathDB = 'dataset/'
 DB_name = 'mitdb'
 fs = 360
 jump_lines = 1
@@ -188,6 +188,6 @@ for pose in R_poses[r]:
 
 #plt.show()
 
-plt.savefig('/home/mondejar/graphic_2.pdf', dpi=None, facecolor='w', edgecolor='w',
+plt.savefig('graphic_2.pdf', dpi=None, facecolor='w', edgecolor='w',
     orientation='landscape', papertype='a4', format='pdf', transparent=True, bbox_inches=None, 
     pad_inches=0.1, frameon=None)

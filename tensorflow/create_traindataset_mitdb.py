@@ -84,7 +84,7 @@ def get_data_label_mitdb( list_patient, mit_db ):
                 #plt.show()
     return (data, labels)
 
-dataset = '/home/mondejar/dataset/ECG/mitdb/'
+dataset = 'dataset/mitdb/'
 output_path = dataset + 'm_learning/'
 window_size = 160
 compute_RR_interval_feature = True

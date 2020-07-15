@@ -7,13 +7,15 @@ import pandas as pd
 from run_train_SVM import predict
 
 from flask import Flask, redirect, url_for, request, render_template, jsonify
+from flask_ngrok import run_with_ngrok
 from werkzeug.utils import secure_filename
-from gevent.pywsgi import WSGIServer
+# from gevent.pywsgi import WSGIServer
 # from predict import *
 from utils import *
 from collections import OrderedDict 
 # from config import get_config
 app = Flask(__name__)
+run_with_ngrok(app)
 # app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 
 global classesM
@@ -107,7 +109,7 @@ def result(data):
 
 if __name__ == '__main__':
     # config = get_config()
-    app.run(debug=True)
+    app.run()
 
     # Serve the app with gevent
     # http_server = WSGIServer(('', 5000), app)

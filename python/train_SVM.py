@@ -155,7 +155,7 @@ def create_oversamp_name(reduced_DS, do_preprocess, compute_morph, winL, winR, m
 
 
 def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_class=True, 
-    maxRR=True, use_RR=True, norm_RR=True, compute_morph={''}, oversamp_method = '', pca_k = '', feature_selection = '', do_cross_val = '', C_value = 0.001, gamma_value = 0.0, reduced_DS = False, leads_flag = [1,0]):
+    maxRR=True, use_RR=True, norm_RR=True, compute_morph={''}, oversamp_method = '', pca_k = '', feature_selection = '', do_cross_val = '', C_value = 0.001, gamma_value = 0.0, reduced_DS = False, leads_flag = [1,0], pred_flag=None):
     print("Runing train_SVM.py!")
 
     db_path = 'dataset/mitdb/m_learning/scikit/'
@@ -177,7 +177,7 @@ def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_clas
 
     # Load Test data
     [eval_features, eval_labels, eval_patient_num_beats] = load_mit_db('DS2', winL, winR, do_preprocess, 
-        maxRR, use_RR, norm_RR, compute_morph, db_path, reduced_DS, leads_flag)
+        maxRR, use_RR, norm_RR, compute_morph, db_path, reduced_DS, leads_flag, flag=pred_flag)
     if reduced_DS == True:
         np.savetxt('mit_db/' + 'exp_2_' + 'DS2_labels.csv', eval_labels.astype(int), '%.0f') 
     else:
@@ -354,8 +354,9 @@ def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_clas
 
         # ovo_voting:
         # Simply add 1 to the win class
-        print("Evaluation on DS1 ...")
-        eval_model(svm_model, tr_features_scaled, tr_labels, multi_mode, 'ovo_voting', perf_measures_path, C_value, gamma_value, 'Train_')
+        if not pred_flag:
+            print("Evaluation on DS1 ...")
+            eval_model(svm_model, tr_features_scaled, tr_labels, multi_mode, 'ovo_voting', perf_measures_path, C_value, gamma_value, 'Train_')
 
         # Let's test new data!
         print("Evaluation on DS2 ...")   
@@ -364,8 +365,9 @@ def main(multi_mode='ovo', winL=90, winR=90, do_preprocess=True, use_weight_clas
 
         # ovo_voting_exp:
         # Consider the post prob adding to both classes
-        print("Evaluation on DS1 ...")
-        eval_model(svm_model, tr_features_scaled, tr_labels, multi_mode, 'ovo_voting_exp', perf_measures_path, C_value, gamma_value, 'Train_')
+        if not pred_flag:
+            print("Evaluation on DS1 ...")
+            eval_model(svm_model, tr_features_scaled, tr_labels, multi_mode, 'ovo_voting_exp', perf_measures_path, C_value, gamma_value, 'Train_')
 
         # Let's test new data!
         print("Evaluation on DS2 ...")   

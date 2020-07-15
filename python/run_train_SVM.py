@@ -40,7 +40,7 @@ pca_k = 0
 # With feature selection
 ov_methods = {''}#, 'SMOTE_regular'}
 
-C_values = {0.001, 0.01, 0.1, 1, 10, 100}
+C_values = {100}
 gamma_values = {0.0}
 gamma_value = 0.0
 
@@ -51,7 +51,7 @@ for C_value in C_values:
     use_RR = False
     norm_RR = False
     compute_morph = {'u-lbp'} 
-    main(multi_mode, 90, 90, do_preprocess, use_weight_class, maxRR, use_RR, norm_RR, compute_morph, oversamp_method, pca_k, feature_selection, do_cross_val, C_value, gamma_value, reduced_DS, leads_flag)
+    # main(multi_mode, 90, 90, do_preprocess, use_weight_class, maxRR, use_RR, norm_RR, compute_morph, oversamp_method, pca_k, feature_selection, do_cross_val, C_value, gamma_value, reduced_DS, leads_flag)
             
     """
     # Two
@@ -126,3 +126,14 @@ for C_value in C_values:
     main(multi_mode, 90, 90, do_preprocess, use_weight_class, maxRR, use_RR, norm_RR, compute_morph, oversamp_method, pca_k, feature_selection, do_cross_val, C_value, gamma_value, reduced_DS, leads_flag)
              
     """
+
+def predict(predPath):
+    for C_value in C_values:
+        pca_k = 0
+
+        # Single
+        use_RR = False
+        norm_RR = False
+        compute_morph = {'u-lbp'} 
+        main(multi_mode, 90, 90, do_preprocess, use_weight_class, maxRR, use_RR, norm_RR, compute_morph, oversamp_method, pca_k, feature_selection, do_cross_val, C_value, gamma_value, reduced_DS, leads_flag, pred_flag=predPath)
+        

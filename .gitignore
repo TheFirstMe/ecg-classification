@@ -13,3 +13,7 @@ python/dataset/*
 !python/dataset/mitdb
 python/dataset/mitdb/*
 !python/dataset/mitdb/csv
+
+python/Dropbox
+python/__pycache__
+.vscode

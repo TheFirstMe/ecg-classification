@@ -7,7 +7,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
-            "pythonPath": "${config:python.pythonPath}",
+            "pythonPath": "${command:python.interpreterPath}",
             "program": "Dropbox/ECG/code/ecg_classification/python/basic_fusion.py",
             "cwd": "${workspaceRoot}",
             "env": {},

@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %}
+
+<h2> csv files only! </h2>
+
+<h5> Code Description </h5>
+N : Normal Beat <br>
+S : Supraventricular Ectopic Beat <br>
+V : Ventricular Ectopic Beat <br>
+F : Fusion Beat <br> <br>
+<div>
+
+    <form id="upload-file" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col justify-content-center">
+                <label for="imageUpload" class="btn btn-primary mb-0">
+                    Choose
+                </label>
+                <input type="file" name="file" id="imageUpload" accept=".csv" required>
+                <button type="button" id="btn-predict" class="btn btn-success ml-1" disabled>
+                    <span id="loader" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span id="btn-predict-text">Upload</span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="loader" style="display:none;"></div>
+
+    <div id="result" class="mt-5">
+    </div>
+
+</div>
+
+
+{% endblock %}
